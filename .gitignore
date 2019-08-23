@@ -1,0 +1,14 @@
+node_modules/
+.vscode/
+.history/
+.idea/
+dist/
+.DS_Store
+AUI2/
+npm-debug.log
+mongo.bat
+logs
+webide.db
+package-lock.json
+mongo.bat
+.awb/
