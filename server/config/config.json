@@ -1,0 +1,193 @@
+{
+    "server": {
+        "id": "netbank",
+        "type": "v2sual",
+        "name": "网银",
+        "port": 3000,
+        "host": "localhost"
+    },
+    "webide": {
+        "port": 7003,
+        "host": "http://localhost",
+        "clientPort": 3000,
+        "clientHost": "localhost",
+        "path": "/socket.io",
+        "publicPort": 7003,
+        "preview": "http://localhost:7007"
+    },
+    "runtime": {
+        "base": "./project/runtime",
+        "component": "./src/v2Components",
+        "platformComponent":"./node_modules/@v2-components",
+        "componentFile": "./src/@aweb-components/aweb.components.js",
+        "platformPipe":"./node_modules/@v2-pipe",
+        "pipe": "./pipe",
+        "page": "./src/views",
+        "customWidget": "./src/views/_customWidget",
+        "datadict": "./src/datadict",
+        "dist": "./dist",
+        "homepage": "index.html"
+    },
+    "module": {
+        "navigator": {
+            "consumption": {
+                "getNaviItems": "getNaviItems"
+            },
+            "category": {
+                "ENTRY": {
+                    "NAME": "_entry",
+                    "LABEL": "入口页面"
+                },
+                "CUSTOM_WIDGET": {
+                    "NAME": "_customWidget",
+                    "LABEL": "自定义组件"
+                }
+            },
+            "exclude": [
+                "Layout.vue",
+                "Home.vue"
+            ]
+        },
+        "pageFlow": {
+            "consumption": {
+                "/v1/page/list": "list",
+                "/v1/page/content": "content",
+                "/v1/logic/list": "logicList",
+                "/v1/page/script": "script",
+                "/v1/page/upload": "picUpload",
+                "/v1/page/rename": "rename"
+            }
+        },
+        "page": {
+            "consumption": {
+                "/v1/external/widget": "widget",
+                "/v1/external/dict": "dict"
+            }
+        },
+        "preview": {
+            "consumption": {
+                "/v1/external/runtimeWidget": "runtimeWidget",
+                "getVueEditorStyles": "style",
+                "packageInit": "init"
+            },
+            "http": {
+                "/v1/preview/init": "init"
+            },
+            "script": {
+                "init": "npm i --registry=https://npm.awebide.com",
+                "style": "npm run style",
+                "script": "npm run component"
+            },
+            "result": "./v2sual/@aweb-template/vue-spa.umd.js"
+        },
+        "logic": {
+            "consumption": {}
+        },
+        "pipe": {
+            "consumption": {
+                "/v1/pipe/list": "list",
+                "savePipe": "save",
+                "createPipe": "create"
+            }
+        },
+        "reader": {
+            "consumption": {
+                "getFile": "getFile",
+                "saveFile": "saveFile",
+                "createFile": "createFile",
+                "createFolder": "createFolder",
+                "deleteFile": "deleteFile",
+                "copyFile":"copyFile",
+                "getPipe": "getPipe"
+            }
+        },
+        "test": {
+            "table": {
+                "http": {
+                    "/v1/dictTest/table": "getOption",
+                    "/v1/dictTest/tableOp": "tableOpera"
+                }
+            }
+        },
+        "project":{
+            "consumption": {
+                "/project/themeLayout": "getThemeLayout",
+                "/project/new":"newProject",
+                "/project/install":"install"
+            },
+            "http":{
+               
+            }
+        }
+    },
+    "static": [
+        {
+            "router": "/v1/static/",
+            "dir": "./dist"
+        },
+        {
+            "router": "/v1/runtime/",
+            "dir": "./dist"
+        },
+        {
+            
+            "router": "/v1/v2sual/",
+            "dir": "./node_modules/@v2-lib/v2sual/sources"
+        },{
+            "router":"/v1/public",
+            "dir":"./public"
+        }
+    ],
+    "dataSource": {
+        "base": "/v1/ds",
+        "proxy": [
+            {
+                "name": "AFA 测试连接",
+                "source": "/afa",
+                "target": "https://afa-api.awebide.com",
+                "changeOrigin": true,
+                "pathRewrite": {
+                    "v1/ds/afa": ""
+                },
+                "logLevel": "debug"
+            },
+            {
+                "name": "Excel 测试连接",
+                "source": "/excel",
+                "target": "http://localhost:10240",
+                "changeOrigin": true,
+                "pathRewrite": {
+                    "v1/ds/": ""
+                },
+                "logLevel": "debug"
+            },{
+                "name": "招行内容管理",
+                "source": "/cmbcms",
+                "target": "http://192.168.0.38:8086",
+                "changeOrigin": true,
+                "pathRewrite": {
+                    "v1/ds/cmbcms": ""
+                },
+                "logLevel": "debug"
+            },{
+                "name":"VDA 数据源",
+                "source": "/dvms",
+                "target": "https://nanyan.agree.cn/dvms/",
+                "changeOrigin": true,
+                "pathRewrite": {
+                    "v1/ds/dvms": ""
+                },
+                "logLevel": "debug"
+            },{
+                "name":"VDA 请求",
+                "source": "/../vda",
+                "target": "https://nanyan.agree.cn/dvms/",
+                "changeOrigin": true,
+                "pathRewrite": {
+                    "v1/vda": "vda"
+                },
+                "logLevel": "debug"
+            }
+        ]
+    }
+}
