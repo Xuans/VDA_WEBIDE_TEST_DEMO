@@ -16,7 +16,7 @@
     "dependencies": {
         "@v2-lib/vue.spa.plugin": "^6.0.0",
         "animate.css": "^3.7.2",
-        "axios": "^0.18.0",
+        "axios": "^0.21.1",
         "babel-polyfill": "^6.26.0",
         "echarts": "^4.2.1",
         "element-ui": "^2.4.11",
